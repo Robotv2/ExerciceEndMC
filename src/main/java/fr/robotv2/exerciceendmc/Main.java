@@ -21,16 +21,14 @@ public class Main {
         return new ShortestPath(roads).findShortestPath(source, destination);
     }
 
-    private static class ShortestPath {
+    private record Road(int source, int destination, int distance) { }
 
-        private record Road(int source, int destination, int distance) { }
+    private static class ShortestPath {
 
         private final Set<Road> roads = new HashSet<>();
 
         public ShortestPath(int[][] roads) {
-
             // converted 2d array to POJO for readability.
-
             for(int i = 0; i < roads.length; i ++) {
                 this.roads.add(new Road(roads[i][0], roads[i][1], roads[i][2]));
             }
@@ -58,7 +56,7 @@ public class Main {
 
                 visited[current] = true;
 
-                for (ShortestPath.Road road : roads) {
+                for (Road road : roads) {
                     if (road.source == current && !visited[road.destination]) {
                         int newDistance = distances[current] + road.distance;
                         if (newDistance < distances[road.destination]) {

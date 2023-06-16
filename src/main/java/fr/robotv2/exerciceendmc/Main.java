@@ -29,8 +29,8 @@ public class Main {
 
         public ShortestPath(int[][] roads) {
             // converted 2d array to POJO for readability.
-            for(int i = 0; i < roads.length; i ++) {
-                this.roads.add(new Road(roads[i][0], roads[i][1], roads[i][2]));
+            for (int[] road : roads) {
+                this.roads.add(new Road(road[0], road[1], road[2]));
             }
         }
 
